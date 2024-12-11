@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>&Chi;&sup2; - Электронная очередь</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <h1>&Chi;&sup2; - Электронная очередь</h1>
+                <nav>
+                    <a href="#main">Главная</a>
+                    <a href="#register">Регистрация</a>
+                    <a href="#services">Услуги</a>
+                    <a href="#admin">Для сотрудников</a>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="intro">
+                <h2>
+                    Добро пожаловать в систему электронной очереди &Chi;&sup2;
+                </h2>
+                <p>
+                    Зарегистрируйтесь онлайн, чтобы получить номер электронной
+                    очереди и выбрать удобное время для посещения банка.
+                </p>
+
+                <!-- <p> -->
+                <h2>Мы предлагаем следующие услуги:</h2>
+                <ul>
+                    <li>Работа со счётом</li>
+                    <li>Взять кредит</li>
+                    <li>Открыть счёт</li>
+                    <li>Оплата</li>
+                </ul>
+                <!-- </p> -->
+            </section>
+        </main>
+
+        <section id="register">
+            <h2>Регистрация клиента</h2>
+            <form>
+                <label for="surname">Фамилия:</label>
+                <input type="text" id="surname" name="surname" required />
+
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="patronymic">Отчество (если имеется):</label>
+                <input type="text" id="patronymic" name="patronymic" />
+
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required />
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+
+                <label for="date">Дата посещения:</label>
+                <input type="date" id="date" name="date" required />
+
+                <label for="time">Время посещения:</label>
+                <input type="time" id="time" name="time" required />
+
+                <label for="service">Выбор услуги:</label>
+                <select id="service" name="service" required>
+                    <option value="work">Работа со счётом</option>
+                    <option value="credit">Взять кредит</option>
+                    <option value="open">Открыть счёт</option>
+                    <option value="payment">Оплата</option>
+                </select>
+
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </section>
+
+        <section id="admin">
+            <h2>Для сотрудников банка</h2>
+            <form>
+                <label for="admin-login">Логин:</label>
+                <input
+                    type="text"
+                    id="admin-login"
+                    name="admin-login"
+                    required
+                />
+
+                <label for="admin-password">Пароль:</label>
+                <input
+                    type="password"
+                    id="admin-password"
+                    name="admin-password"
+                    required
+                />
+
+                <button type="submit">Войти</button>
+            </form>
+            <h3>Бронирование очереди для клиента</h3>
+            <form>
+                <label for="client-surname">Фамилия:</label>
+                <input
+                    type="text"
+                    id="client-surname"
+                    name="client-surname"
+                    required
+                />
+
+                <label for="client-name">Имя:</label>
+                <input
+                    type="text"
+                    id="client-name"
+                    name="client-name"
+                    required
+                />
+
+                <label for="client-patronymic">Отчество (если имеется):</label>
+                <input
+                    type="text"
+                    id="client-patronymic"
+                    name="client-patronymic"
+                />
+
+                <label for="client-phone">Телефон:</label>
+                <input
+                    type="tel"
+                    id="client-phone"
+                    name="client-phone"
+                    required
+                />
+
+                <label for="client-email">Email:</label>
+                <input
+                    type="email"
+                    id="client-email"
+                    name="client-email"
+                    required
+                />
+
+                <label for="client-date">Дата:</label>
+                <input
+                    type="date"
+                    id="client-date"
+                    name="client-date"
+                    required
+                />
+
+                <label for="client-time">Время:</label>
+                <input
+                    type="time"
+                    id="client-time"
+                    name="client-time"
+                    required
+                />
+
+                <label for="service">Выбор услуги:</label>
+                <select id="service" name="service" required>
+                    <option value="work">Работа со счётом</option>
+                    <option value="credit">Взять кредит</option>
+                    <option value="open">Открыть счёт</option>
+                    <option value="payment">Оплата</option>
+                </select>
+
+                <button type="submit">Забронировать</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 &Chi;&sup2; - Все права защищены.</p>
+        </footer>
+    </body>
+</html>
