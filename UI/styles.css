@@ -93,3 +93,8 @@ footer {
     max-width: 800px;
     margin: 20px auto;
 }
+
+td {
+    border: 1px solid #ccc;
+    padding: 5px;
+}

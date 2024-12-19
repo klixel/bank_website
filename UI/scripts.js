@@ -1,3 +1,14 @@
+function getOrInsert(name, value) {
+    let item = localStorage.getItem(name);
+
+    if (item === null) {
+        localStorage.setItem(name, value);
+        return value;
+    } else {
+        return item;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // Навигация
     const navLinks = document.querySelectorAll('nav a');
@@ -22,14 +33,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Массив объектов
     const ObjInf = [
         {
-            id: '1',
-            description: 'Описание 1',
-            createdAt: new Date('2023-10-01'),
-            author: 'Автор 1',
-            photoLink: 'photo1.jpg'
+            id: 1,
+            surname: 'Иванов',
+            name: 'Иван',
+            patronymic: 'Иванович',
+            phone: '+375291234567',
+            email: 'ivan@gmail.com',
+            serviceType: 'work',
+            date: new Date('2025-10-01'),
+            time: '10:00'
         },
-        // Добавьте другие объекты сюда
-    ];
+        {
+            id: 2,
+            surname: 'Петров',
+            name: 'Петр',
+            patronymic: 'Петрович',
+            phone: '+375291234568',
+            email: 'petr@gmail.com',
+            serviceType: 'credit',
+            date: new Date('2025-10-02'),
+            time: '11:00'
+        },
+    ]
 
     // Класс для работы с коллекцией объектов
     class ObjCollection {
@@ -39,12 +64,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         _validateObj(obj) {
+            // if (!obj || typeof obj !== 'object') return false;
+            // if (typeof obj.id !== 'string' || !obj.id.trim()) return false;
+            // if (typeof obj.description !== 'string' || obj.description.length >= 200) return false;
+            // if (!(obj.createdAt instanceof Date) || isNaN(obj.createdAt)) return false;
+            // if (typeof obj.author !== 'string' || !obj.author.trim()) return false;
+            // if (obj.photoLink && typeof obj.photoLink !== 'string') return false;
+            // return true;
             if (!obj || typeof obj !== 'object') return false;
-            if (typeof obj.id !== 'string' || !obj.id.trim()) return false;
-            if (typeof obj.description !== 'string' || obj.description.length >= 200) return false;
-            if (!(obj.createdAt instanceof Date) || isNaN(obj.createdAt)) return false;
-            if (typeof obj.author !== 'string' || !obj.author.trim()) return false;
-            if (obj.photoLink && typeof obj.photoLink !== 'string') return false;
+            if (typeof obj.surname !== 'string' || !obj.surname.trim()) return false;
+            if (typeof obj.name !== 'string' || !obj.name.trim()) return false;
+            if (typeof obj.patronymic !== 'string') return false;
+            if (typeof obj.phone !== 'string' || !obj.phone.trim()) return false;
+            if (typeof obj.email !== 'string' || !obj.email.trim()) return false;
+            if (typeof obj.service !== 'string' || !obj.service.trim()) return false;
+            if (!(obj.date instanceof Date) || isNaN(obj.date)) return false;
+            if (typeof obj.time !== 'string' || !obj.time.trim()) return false;
             return true;
         }
 
@@ -190,45 +225,112 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Заполняем таблицу элементами текущей страницы
         paginatedObjs.forEach((obj) => {
+            // const row = document.createElement('tr');
+            // const idCell = document.createElement('td');
+            // idCell.textContent = obj.id;
+            // row.appendChild(idCell);
+
+            // const descCell = document.createElement('td');
+            // descCell.textContent = obj.description;
+            // row.appendChild(descCell);
+
+            // const dateCell = document.createElement('td');
+            // dateCell.textContent = obj.createdAt.toLocaleDateString();
+            // row.appendChild(dateCell);
+
+            // const authorCell = document.createElement('td');
+            // authorCell.textContent = obj.author;
+            // row.appendChild(authorCell);
+
+            // const actionsCell = document.createElement('td');
+
+            // // Кнопка редактирования
+            // const editButton = document.createElement('button');
+            // editButton.textContent = 'Редактировать';
+            // editButton.addEventListener('click', function () {
+            //     editObj(obj.id); // Открыть функцию редактирования
+            // });
+            // actionsCell.appendChild(editButton);
+
+            // // Кнопка удаления
+            // const deleteButton = document.createElement('button');
+            // deleteButton.textContent = 'Удалить';
+            // deleteButton.addEventListener('click', function () {
+            //     if (confirm('Вы уверены, что хотите удалить этот объект?')) {
+            //         collection.removeObj(obj.id); // Удаление объекта из коллекции
+            //         collection.save();
+            //         renderTableWithPagination(); // Перерисовываем таблицу
+            //     }
+            // });
+            // actionsCell.appendChild(deleteButton);
+
+            // row.appendChild(actionsCell);
+
+            // objTableBody.appendChild(row);
             const row = document.createElement('tr');
             const idCell = document.createElement('td');
             idCell.textContent = obj.id;
             row.appendChild(idCell);
 
-            const descCell = document.createElement('td');
-            descCell.textContent = obj.description;
-            row.appendChild(descCell);
+            const surnameCell = document.createElement('td');
+            surnameCell.textContent = obj.surname;
+            row.appendChild(surnameCell);
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = obj.name;
+            row.appendChild(nameCell);
+
+            const patronymicCell = document.createElement('td');
+            patronymicCell.textContent = obj.patronymic;
+            row.appendChild(patronymicCell);
+
+            const phoneCell = document.createElement('td');
+            phoneCell.textContent = obj.phone;
+            row.appendChild(phoneCell);
+
+            const emailCell = document.createElement('td');
+            emailCell.textContent = obj.email;
+            row.appendChild(emailCell);
+
+            const serviceCell = document.createElement('td');
+            serviceCell.textContent = obj.service;
+            row.appendChild(serviceCell);
 
             const dateCell = document.createElement('td');
-            dateCell.textContent = obj.createdAt.toLocaleDateString();
+            dateCell.textContent = obj.date.toString();
             row.appendChild(dateCell);
 
-            const authorCell = document.createElement('td');
-            authorCell.textContent = obj.author;
-            row.appendChild(authorCell);
+            const timeCell = document.createElement('td');
+            timeCell.textContent = obj.time;
+            row.appendChild(timeCell);
 
             const actionsCell = document.createElement('td');
 
             // Кнопка редактирования
             const editButton = document.createElement('button');
             editButton.textContent = 'Редактировать';
+
             editButton.addEventListener('click', function () {
                 editObj(obj.id); // Открыть функцию редактирования
-            });
+            }
+            );
             actionsCell.appendChild(editButton);
 
             // Кнопка удаления
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Удалить';
+
             deleteButton.addEventListener('click', function () {
                 if (confirm('Вы уверены, что хотите удалить этот объект?')) {
                     collection.removeObj(obj.id); // Удаление объекта из коллекции
                     collection.save();
                     renderTableWithPagination(); // Перерисовываем таблицу
                 }
-            });
-            actionsCell.appendChild(deleteButton);
+            }
 
+            );
+
+            actionsCell.appendChild(deleteButton);
             row.appendChild(actionsCell);
 
             objTableBody.appendChild(row);
@@ -302,17 +404,27 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         const newObj = {
-            id: document.getElementById('new-id').value,
-            description: document.getElementById('new-description').value,
-            createdAt: new Date(),
-            author: document.getElementById('new-author').value,
-            photoLink: document.getElementById('new-photoLink').value
+            // id: document.getElementById('new-id').value,
+            // description: document.getElementById('new-description').value,
+            // createdAt: new Date(),
+            // author: document.getElementById('new-author').value,
+            // photoLink: document.getElementById('new-photoLink').value
+            id: Number(getOrInsert("id", 0)),
+            surname: document.getElementById('new-surname').value,
+            name: document.getElementById('new-name').value,
+            patronymic: document.getElementById('new-patronymic').value,
+            phone: document.getElementById('new-phone').value,
+            email: document.getElementById('new-email').value,
+            service: document.getElementById('new-service').value,
+            date: new Date(document.getElementById('new-date').value),
+            time: document.getElementById('new-time').value
         };
 
         if (collection.addObj(newObj)) {
             renderTableWithPagination();  // Перерисовываем таблицу
             addObjForm.reset();  // Очищаем форму
             collection.save();
+            localStorage.setItem("id", newObj.id + 1);
         } else {
             alert('Ошибка при добавлении объекта. Проверьте данные.');
         }
@@ -354,6 +466,17 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Сортировка по убыванию');
         collection.sortById('desc');
         console.log(collection)
+        renderTableWithPagination();  // Обновляем таблицу
+    });
+
+    const reindexButton = document.getElementById('reindex');
+    reindexButton.addEventListener('click', function () {
+        console.log('Переиндексация');
+        collection._objs.forEach((obj, index) => {
+            obj.id = index;
+        });
+        collection.save();
+        localStorage.setItem("id", collection._objs.length);
         renderTableWithPagination();  // Обновляем таблицу
     });
 

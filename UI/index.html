@@ -106,7 +106,7 @@
     <h2>Админ-панель</h2>
 
     <h3>Добавить новый объект</h3>
-    <form id="add-obj-form">
+    <!-- <form id="add-obj-form">
         <label for="new-id">ID:</label>
         <input type="text" id="new-id" name="new-id" required />
 
@@ -120,10 +120,43 @@
         <input type="text" id="new-photoLink" name="new-photoLink" />
 
         <button type="submit">Добавить объект</button>
+    </form> -->
+    <form id="add-obj-form">
+        <label for="new-surname">Фамилия:</label>
+        <input type="text" id="new-surname" name="new-surname" required />
+
+        <label for="new-name">Имя:</label>
+        <input type="text" id="new-name" name="new-name" required />
+
+        <label for="new-patronymic">Отчество (если имеется):</label>
+        <input type="text" id="new-patronymic" name="new-patronymic" />
+
+        <label for="new-phone">Телефон:</label>
+        <input type="tel" id="new-phone" name="new-phone" required />
+
+        <label for="new-email">Email:</label>
+        <input type="email" id="new-email" name="new-email" required />
+
+        <label for="new-date">Дата посещения:</label>
+        <input type="date" id="new-date" name="new-date" required />
+
+        <label for="new-time">Время посещения:</label>
+        <input type="time" id="new-time" name="new-time" required />
+
+        <label for="new-service">Выбор услуги:</label>
+        <select id="new-service" name="new-service" required>
+            <option value="work">Работа со счётом</option>
+            <option value="credit">Взять кредит</option>
+            <option value="open">Открыть счёт</option>
+            <option value="payment">Оплата</option>
+        </select>
+
+        <button type="submit">Добавить объект</button>
     </form>
     <div>
         <button id="sort-asc">Сортировать по возрастанию id</button>
         <button id="sort-desc">Сортировать по убыванию id</button>
+        <button id="reindex">Пересчитать id</button>
     </div>
 
     <!-- Таблица объектов -->
@@ -131,10 +164,20 @@
     <table id="obj-table" class="hidden">
         <thead>
         <tr>
-            <th>ID</th>
+            <!-- <th>ID</th>
             <th>Описание</th>
             <th>Дата создания</th>
             <th>Автор</th>
+            <th>Действия</th> -->
+            <th>ID</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Услуга</th>
+            <th>Дата посещения</th>
+            <th>Время посещения</th>
             <th>Действия</th>
         </tr>
         </thead>
